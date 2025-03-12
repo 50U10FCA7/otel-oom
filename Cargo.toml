@@ -5,9 +5,14 @@ edition = "2024"
 
 [dependencies]
 opentelemetry = "0.28"
-opentelemetry_sdk = { version = "0.28", features = ["rt-tokio-current-thread", "experimental_trace_batch_span_processor_with_async_runtime", "rt-tokio"] }
+opentelemetry_sdk = { version = "0.28", features = ["rt-async-std", "experimental_trace_batch_span_processor_with_async_runtime"] }
 opentelemetry-otlp = { version = "0.28", features = ["grpc-tonic", "trace"] }
 tracing = "0.1"
 tracing-opentelemetry = { version = "0.29", default-features = false }
 async-std = { version = "1", features = ["attributes", "unstable"] }
 tracing-subscriber = "0.3.19"
+
+[path.crates-io]
+opentelemetry = { git = "https://github.com/50U10FCA7/opentelemetry-rust.git", branch = "2787-fix-oom" }
+opentelemetry-sdk = { git = "https://github.com/50U10FCA7/opentelemetry-rust.git", branch = "2787-fix-oom" }
+opentelemetry-otlp = { git = "https://github.com/50U10FCA7/opentelemetry-rust.git", branch = "2787-fix-oom" }
