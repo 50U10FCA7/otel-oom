@@ -2,12 +2,12 @@ use opentelemetry::{global, trace::TracerProvider};
 use opentelemetry_otlp::WithExportConfig;
 use opentelemetry_sdk::{
     propagation::TraceContextPropagator,
-    runtime::Tokio,
+    runtime::AsyncStd,
     trace::{self, SdkTracerProvider, span_processor_with_async_runtime::BatchSpanProcessor},
 };
 use tracing_subscriber::{layer::SubscriberExt as _, util::SubscriberInitExt as _};
 
-#[tokio::main]
+#[async_std::main]
 async fn main() {
     init_tracing();
 
@@ -40,7 +40,7 @@ fn init_tracing() {
 
     let provider = SdkTracerProvider::builder()
         .with_span_processor(
-            BatchSpanProcessor::builder(exporter, Tokio)
+            BatchSpanProcessor::builder(exporter, AsyncStd)
                 .with_batch_config(
                     // Limit the batch size to reach OOM faster.
                     trace::BatchConfigBuilder::default()

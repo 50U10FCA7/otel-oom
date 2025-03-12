@@ -9,5 +9,5 @@ opentelemetry_sdk = { version = "0.28", features = ["rt-tokio-current-thread", "
 opentelemetry-otlp = { version = "0.28", features = ["grpc-tonic", "trace"] }
 tracing = "0.1"
 tracing-opentelemetry = { version = "0.29", default-features = false }
-tokio = { version = "1", features = ["rt-multi-thread"] }
+async-std = { version = "1", features = ["attributes", "unstable"] }
 tracing-subscriber = "0.3.19"
